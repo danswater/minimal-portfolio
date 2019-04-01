@@ -2,6 +2,7 @@ import * as React from 'react';
 import Typist from 'react-typist';
 import './App.css';
 import Configs from './configurations.json';
+import GithubCorner from './GithubCorner';
 
 interface Link {
   name: string;
@@ -28,7 +29,7 @@ interface IState {
   links: Array<Link>;
 };
 
-class App extends React.Component<IProps, IState> {
+class App extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -195,6 +196,7 @@ class App extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={this.state.appClass} style={this.state.bgStyle}>
+        <GithubCorner />
         <div className="change-mode" onClick={this.changeThemeMode} />
         <div
           className={this.state.backgroundMode}
