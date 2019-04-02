@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://danswater.github.io",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
