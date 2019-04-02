@@ -5,10 +5,13 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "@types/react": "^16.8.10",
+    "@types/react-dom": "^16.8.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8",
-    "react-typist": "^2.0.5"
+    "react-typist": "^2.0.5",
+    "typescript": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
