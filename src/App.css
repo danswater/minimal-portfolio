@@ -185,6 +185,36 @@
   fill: #fff;
 }
 
+/* purple CSS */
+
+.purple .App-main, .contribute {
+  background-color: #757D98;
+  color: #DFDFD0;
+}
+
+.purple .icons-social a {
+  color: #DFDFD0;
+}
+
+.purple .icons-social a svg path {
+  fill: #DFDFD0;
+}
+
+/* yellow CSS */
+
+.yellow .App-main, .yellow .contribute {
+  background: #D0D168;
+  color: rgba(67,75,92,0.8);
+}
+
+.yellow .icons-social a {
+  color: rgba(67,75,92,0.8);
+}
+
+.yellow .icons-social a svg path {
+  fill: rgba(67,75,92,0.8);
+}
+
 /* amythyst CSS */
 
 .amythyst .App-main {
@@ -228,6 +258,21 @@
 
 .alizarin .icons-social a svg path {
   fill: #fff;
+}
+
+/* red CSS */
+
+.red .App-main, .red .contribute, .red .footer {
+  background: #d16868;
+  color: rgba(255,255,255,0.5);
+}
+
+.red .icons-social a {
+  color: rgba(255,255,255,0.5);
+}
+
+.red .icons-social a svg path {
+  fill:  rgba(255,255,255,0.5);
 }
 
 /* Light Colors CSS */
@@ -394,3 +439,202 @@
 }
 
 .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+
+
+/* contribute */
+.contribute {
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+#generator, #about, .contribute {
+  width: 100%;
+  padding: 30px 0;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1024px;
+  padding: 0 10px;
+  margin: 0 auto;
+  zoom: 1;
+}
+
+.contribute h1 {
+  width: 460px;
+  float: left;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+#github {
+  width: 300px;
+  padding: 3px 0;
+  float: right;
+  margin-bottom: 20px;
+}
+
+#github a {
+  width: 258px;
+  padding: 1em 20px .8em;
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  -ms-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+  display: inline-block;
+  padding: 0.55em 20px;
+  border: 1px solid rgba(67,75,92,0.2);
+  border-radius: 3px;
+  background: #757D98;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+#team,
+#team li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#team {
+  margin: 0 -10px;
+  overflow: hidden;
+  clear: both;
+}
+
+#team li {
+  width: 240px;
+  height: 240px;
+  margin: 10px;
+  float: left;
+  background: rgba(255,255,255,0.5);
+}
+
+#team li a img {
+  width: 240px;
+  height: 240px;
+  opacity: .7;
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+#team li a:hover img {
+  opacity: 1;
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+#team li a {
+  position: relative;
+  display: block;
+}
+
+#team li a:after {
+  width: 240px;
+  height: 180px;
+  display: block;
+  position: absolute;
+  top: 0;
+  content: attr(title);
+  background: #8CC7C2;
+  text-align: center;
+  padding: 60px 0px 0;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #434B5C;
+  color: rgba(67,75,92,0.8);
+  box-shadow: 0 0 0 1px rgba(208, 209, 104, 0.90), inset 0 0 0 1px rgba(208, 209, 104, 0.90);
+  opacity: 0;
+}
+
+#team li a:after {
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+#team li a:hover:after {
+  opacity: 1;
+}
+
+/* Transitions for Contributors block */
+
+#team li a img,
+#team li a:hover img {
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  -ms-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+#team li a:after,
+#team li a:hover:after {
+  -webkit-transition: opacity .3s ease-out;
+  -moz-transition: opacity .3s ease-out;
+  -o-transition: opacity .3s ease-out;
+  -ms-transition: opacity .3s ease-out;
+  transition: opacity .3s ease-out;
+}
+
+/* =Footer
+----------------------------------------------- */
+
+.footer {
+  width: 100%;
+  padding: 50px 0;
+  margin: 0 auto;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 1;
+  font-size: 12px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(67, 75, 92, 0.5), inset 0 3px 12px rgba(67, 75, 92, 0.2);
+  -moz-box-shadow: inset 0 1px 0 rgba(67, 75, 92, 0.5), inset 0 3px 12px rgba(67, 75, 92, 0.2);
+  box-shadow: inset 0 1px 0 rgba(67, 75, 92, 0.5), inset 0 3px 12px rgba(67, 75, 92, 0.2);
+}
+
+.footer {
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.footer a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.footer a:hover {
+  color: rgba(255,255,255,0.9);
+  border-bottom: 1px solid rgba(255,255,255,0);
+}
+
+/* Transitions for Footer */
+
+.footer a,
+.footer a:hover {
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  -ms-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+

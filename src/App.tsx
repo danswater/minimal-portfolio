@@ -3,6 +3,7 @@ import Typist from 'react-typist';
 import './App.css';
 import Configs from './configurations.json';
 import GithubCorner from './GithubCorner';
+import ProjectList from './ProjectList';
 
 interface Link {
   name: string;
@@ -40,7 +41,10 @@ class App extends React.PureComponent<IProps, IState> {
         'alizarin',
         'amythyst',
         'carrot',
-        'peterriver'
+        'peterriver',
+        'purple',
+        'yellow',
+        'red'
       ],
       lightBackgroundModes: [
         'night',
@@ -56,56 +60,56 @@ class App extends React.PureComponent<IProps, IState> {
       devDesc:
         Configs.devDesc ||
         'Aute veniam ut deserunt cillum irure pariatur Lorem dolore anim nostrud quis veniam elit culpa.',
-      backgroundMode: 'default',
+      backgroundMode: 'purple',
       backgroundIndex: 0,
       bgStyle: {},
       links: Configs.links
     };
   }
 
-  componentWillMount = () => {
-    if (this.checkIfPlainTypeEnabled()) {
-      return true;
-    } else if (this.checkIfGradientTypeEnabled()) {
-      this.setState({
-        appClass: 'gradient',
-        bgStyle: this.prepareGradientStyleSheets()
-      });
-    } else if (this.checkIfImageTypeEnabled()) {
-      this.setState({
-        appClass: 'full-bg-image',
-        bgStyle: this.prepareBackgroundImageStyle()
-      });
+  componentDidMount = (): void => {
+    if (!this.checkIfPlainTypeEnabled()) {
+      if (this.checkIfGradientTypeEnabled()) {
+        this.setState({
+          appClass: 'gradient',
+          bgStyle: this.prepareGradientStyleSheets()
+        });
+      } else if (this.checkIfImageTypeEnabled()) {
+        this.setState({
+          appClass: 'full-bg-image',
+          bgStyle: this.prepareBackgroundImageStyle()
+        });
+      }
     }
   };
 
-  checkIfNightModeEnabled = () => {
+  checkIfNightModeEnabled = (): boolean => {
     return (
       this.state.backgroundType === 'plain' &&
       this.state.appClass === 'nightlight'
     );
   };
 
-  checkIfDayModeEnabled = () => {
+  checkIfDayModeEnabled = (): boolean => {
     return (
       this.state.backgroundType === 'plain' &&
       this.state.appClass === 'daylight'
     );
   };
 
-  checkIfGradientTypeEnabled = () => {
+  checkIfGradientTypeEnabled = (): boolean => {
     return this.state.backgroundType === 'gradient';
   };
 
-  checkIfPlainTypeEnabled = () => {
+  checkIfPlainTypeEnabled = (): boolean => {
     return this.state.backgroundType === 'plain';
   };
 
-  checkIfImageTypeEnabled = () => {
+  checkIfImageTypeEnabled = (): boolean => {
     return this.state.backgroundType === 'image';
   };
 
-  prepareGradientStyleSheets = () => {
+  prepareGradientStyleSheets = (): BgStyle => {
     if (Configs.gradientColors) {
       return {
         background: 'linear-gradient(-45deg, ' + Configs.gradientColors + ')',
@@ -120,7 +124,7 @@ class App extends React.PureComponent<IProps, IState> {
     }
   };
 
-  prepareBackgroundImageStyle = () => {
+  prepareBackgroundImageStyle = (): BgStyle => {
     if (Configs.backgroundImageUrl) {
       return {
         background:
@@ -138,7 +142,7 @@ class App extends React.PureComponent<IProps, IState> {
     }
   };
 
-  getDefaultModeBasedOnBackgroundType = () => {
+  getDefaultModeBasedOnBackgroundType = (): string => {
     if (this.checkIfNightModeEnabled()) {
       return this.state.lightBackgroundModes[0];
     } else if (this.checkIfDayModeEnabled()) {
@@ -148,7 +152,7 @@ class App extends React.PureComponent<IProps, IState> {
     }
   };
 
-  changeThemeMode = () => {
+  changeThemeMode = (): void => {
     if (this.checkIfNightModeEnabled()) {
       this.setState({
         appClass: 'daylight',
@@ -164,7 +168,7 @@ class App extends React.PureComponent<IProps, IState> {
     }
   };
 
-  changeBackgroundBasedonMode = () => {
+  changeBackgroundBasedonMode = (): void => {
     if (
       this.checkIfNightModeEnabled() &&
       this.state.backgroundIndex < this.state.lightBackgroundModes.length - 1
@@ -197,7 +201,6 @@ class App extends React.PureComponent<IProps, IState> {
     return (
       <div className={this.state.appClass} style={this.state.bgStyle}>
         <GithubCorner />
-        <div className="change-mode" onClick={this.changeThemeMode} />
         <div
           className={this.state.backgroundMode}
           onClick={this.changeBackgroundBasedonMode}>
@@ -216,6 +219,16 @@ class App extends React.PureComponent<IProps, IState> {
               </div>
             </div>
           </main>
+        </div>
+        <div className="yellow">
+          <ProjectList />
+        </div>
+        <div className="red">
+          <footer id="colophon" className="footer" role="contentinfo">
+            <div className="site-info">
+              <a href="https://underscores.me/" title="Underscores | A Starter Theme for WordPress" rel="generator">Design heavily inspired by underscores.me</a>
+            </div>
+          </footer>
         </div>
       </div>
     );
