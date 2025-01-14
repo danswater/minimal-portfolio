@@ -1,0 +1,50 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Install Yarn
+        run: |
+          npm install -g yarn
+
+      - name: Install Dependencies
+        run: |
+          yarn install
+
+      - name: Build project
+        run: |
+          yarn build
+
+      - uses: actions/checkout@v4
+        with:
+          repository: 'danswater/danswater.github.io'
+          ref: 'main'
+          token:  ${{ secrets.TEMPLATE_OUTPUT_REPO_TOKEN }}
+
+      - name: Setup git config
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "dansisabot.github@gmail.com"
+
+      - name: Deploy project
+        run: |
+          cd dist
+          export COMMIT_MESSAGE="Generated template from ${{ github.repository }}/${{ github.ref}}@${{ github.sha }}"
+          git add .
+          git commit -m "$COMMIT_MESSAGE"
+          git push
+

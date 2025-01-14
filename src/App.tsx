@@ -1,9 +1,9 @@
-import * as React from 'react';
-import Typist from 'react-typist';
+import React from 'react'
 import './App.css';
 import Configs from './configurations.json';
 import GithubCorner from './GithubCorner';
 import ProjectList from './ProjectList';
+import Typewriter from './Typewriter/Typewriter';
 
 interface Link {
   name: string;
@@ -16,7 +16,7 @@ interface BgStyle {
   backgroundSize?: string;
 }
 
-interface IProps {};
+type IProps = object;
 interface IState {
   darkBackgroundModes: Array<string>;
   lightBackgroundModes: Array<string>;
@@ -207,7 +207,7 @@ class App extends React.PureComponent<IProps, IState> {
           <main className="App-main">
             <h1 className="intro"> {this.state.devIntro} </h1>
             <div className="tagline">
-              <Typist> {this.state.devDesc} </Typist>
+              <Typewriter>{this.state.devDesc}</Typewriter>
             </div>
             <div className="icons-social">
               <div>
