@@ -1,52 +1,50 @@
-## Minimal Portfolio Page Built with Typescript + React
+# React + TypeScript + Vite
 
-## Demo
-  [https://danswater.github.io/minimal-portfolio/](https://danswater.github.io/minimal-portfolio/) <br/>
-  Note: Click on the page to see Magic
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Why?
-Base on https://github.com/singhkshitij/My-Landing-Page
->One fine day i was going through GitHub and found an awesome concept on [Dinesh Pandiyan's Profile](https://github.com/flexdinesh/dev-landing-page) and saw that people really liked it and so did i. I really liked the minimalist approach and hence thought that i should take it a step forward.
+Currently, two official plugins are available:
 
-## What's Included ?
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Well you never know whats coming in future, but as of now it supports :
+## Expanding the ESLint configuration
 
-- Material Background with Dark and Light Mode toggle with a button click
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-  ![](https://raw.githubusercontent.com/singhkshitij/My-Landing-Page/master/sample/diff.png)
+- Configure the top-level `parserOptions` property like this:
 
--  Each Dark as well as Light Mode supports 7 color combos by default. (Total -14)
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-### Dark Backgrounds
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-![](https://github.com/singhkshitij/My-Landing-Page/blob/master/sample/Dark.png)
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
 
-### Light Backgrounds
-
-![](https://github.com/singhkshitij/My-Landing-Page/blob/master/sample/light.png)
-
-- Background Changes as and when you click anywhere on page.
-- Gradient Background Support with Free Flow Animation
-
-  ![](https://github.com/singhkshitij/My-Landing-Page/blob/master/sample/gradient.PNG)
-
-- Image background
-
-  ![](https://github.com/singhkshitij/My-Landing-Page/blob/master/sample/image.PNG)
-
-- 'n' number of hyperlinked social profile support
-- Deploy the project on you GitHub account with couple of commands.
-- Changes can be made by just changing a config file :D
-
-  ![](https://github.com/singhkshitij/My-Landing-Page/blob/master/sample/conifgs.PNG)
-
-
-## Found Interesting ?
-Please star the repo if found useful as it'll help other devs to react the content. And yes **feel free to fork, clone, play around and make your own version .**
-
-## How about Contributing ?
-**Branch out the repo and customize on top. If your changes awe us, we will for sure merge them back to the repo**. And and we will list you in contributors sections also.
-
-## Showcase your own Version !
-Have you changed something in the code to create your own version ? Feel free to share with us , we will list them in this space.
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```
