@@ -46,7 +46,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
             name: template-output
-            github-token: ${{ secrets.TEMPLATE_OUTPUT_REPO_TOKEN }}
 
       - name: Setup git config
         run: |
@@ -59,5 +58,5 @@ jobs:
           export COMMIT_MESSAGE="Generated template from ${{ github.repository }}/${{ github.ref}}@${{ github.sha }}"
           git add .
           git commit -m "$COMMIT_MESSAGE"
-          git push
+          git push master
 
