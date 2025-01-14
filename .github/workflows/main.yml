@@ -47,11 +47,23 @@ jobs:
         with:
             name: template-output
 
+      - name: Setup ssh for git command
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no"
 
-      - uses: pixta-dev/repository-mirroring-action@v1
-        with:
-            target_repo_url:
-                git@github.com:danswater/danswater.github.io.git
-            ssh_private_key:
-                ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Setup target remote
+        run: |
+          git remote add target "git@github.com:danswater/danswater.github.io.git"
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "danswater.github@gmail.com"
+
+      - name: Commit and push generated template
+        run: |
+          export COMMIT_MESSAGE="Generated template from ${{ github.repository }}/${{ github.ref}}@${{ github.sha }}"
+          git add .
+          git commit -m "$COMMIT_MESSAGE"
+          git push target
 
