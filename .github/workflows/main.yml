@@ -43,6 +43,7 @@ jobs:
 
       - name: Deploy project
         run: |
+          ls -la
           cd dist
           export COMMIT_MESSAGE="Generated template from ${{ github.repository }}/${{ github.ref}}@${{ github.sha }}"
           git add .
