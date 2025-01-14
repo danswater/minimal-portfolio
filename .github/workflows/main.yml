@@ -46,6 +46,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
             name: template-output
+            github-token: ${{ secrets.TEMPLATE_OUTPUT_REPO_TOKEN }}
 
       - name: Setup git config
         run: |
