@@ -28,13 +28,24 @@ jobs:
       - name: Build project
         run: |
           yarn build
-          ls -la
+
+      - name: Upload generated template
+        uses: actions/upload-artifact@v4
+        id: upload-generated-template
+        with:
+            name: template-output
+            path: dist
 
       - uses: actions/checkout@v4
         with:
           repository: 'danswater/danswater.github.io'
           ref: 'master'
           token:  ${{ secrets.TEMPLATE_OUTPUT_REPO_TOKEN }}
+
+      - name: Download generated template
+        uses: actions/download-artifact@v4
+        with:
+            name: template-output
 
       - name: Setup git config
         run: |
@@ -44,7 +55,6 @@ jobs:
       - name: Deploy project
         run: |
           ls -la
-          cd dist
           export COMMIT_MESSAGE="Generated template from ${{ github.repository }}/${{ github.ref}}@${{ github.sha }}"
           git add .
           git commit -m "$COMMIT_MESSAGE"
