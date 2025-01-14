@@ -47,16 +47,11 @@ jobs:
         with:
             name: template-output
 
-      - name: Setup git config
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "dansisabot.github@gmail.com"
 
-      - name: Deploy project
-        run: |
-          ls -la
-          export COMMIT_MESSAGE="Generated template from ${{ github.repository }}/${{ github.ref}}@${{ github.sha }}"
-          git add .
-          git commit -m "$COMMIT_MESSAGE"
-          git push origin master
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+            target_repo_url:
+                git@github.com:danswater/danswater.github.io.git
+            ssh_private_key:
+                ${{ secrets.SSH_PRIVATE_KEY }}
 
