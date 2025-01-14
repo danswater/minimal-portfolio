@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: 'danswater/danswater.github.io'
-          ref: 'main'
+          ref: 'master'
           token:  ${{ secrets.TEMPLATE_OUTPUT_REPO_TOKEN }}
 
       - name: Setup git config
